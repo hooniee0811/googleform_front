@@ -1,0 +1,214 @@
+.frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(235, 228, 247);
+    height: 100%;
+    padding-top: 30px;
+}
+
+.titleBlock,
+.QBlock {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    border-radius: 5px;
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top:15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.titleBlock {
+    border-top: 7px solid rgb(103, 58, 183);
+    height: 120px;
+}
+
+.QBlock {
+    min-height: 150px;
+    border-left: 7px solid rgb(91, 133, 209);
+    position: relative;
+}
+
+.titleBlock .title {
+    width: 100%;
+    margin-right: 20px;
+    height: 50px;
+    border: 0px;
+    font-size: 35px;
+    font-weight: 550;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.titleBlock .desc {
+    width: 100%;
+    margin-top: 5px;
+    height: 20px;
+    border: 0px;
+    font-size: 13px;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.QBlock .firstRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.QBlock .firstRow .inputQTitle {
+    width: 500px;
+    margin-right: 20px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 550;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    border: 0px;
+}
+
+.QBlock .inputQDesc {
+    width: 500px;
+    margin-bottom: 10px;
+    height: 20px;
+    font-size: 12px;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    border: 0px;
+}
+
+.QBlock .firstRow .selector {
+    display: flex;
+    justify-content: center;
+    height: 25px;
+    border-radius: 3px;
+    border-width: 0px;
+    font-size: 15px;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    transition-duration: 0.1s;
+}
+
+.QBlock .selector:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.QBlock .optionLine {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+}
+
+.QBlock .optionLine .box {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.QBlock .optionLine .inputContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.QBlock .optionLine .inputContainer .option {
+    width: 500px;
+    height: 35px;
+    font-size: 20px;
+    font-weight: 520;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    border: 0px;
+}
+
+.QBlock .optionLine .inputContainer .desc {
+    width: 500px;
+    border: 0px;
+    height: 20px;
+    font-size: 12px;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.titleBlock .title:focus,
+.titleBlock .desc:focus,
+.QBlock .firstRow .inputQTitle:focus,
+.QBlock .inputQDesc:focus,
+.QBlock .optionLine .inputContainer .option:focus,
+.QBlock .optionLine .inputContainer .desc:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(103, 58, 183)
+}
+
+.QBlock .OpBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;   
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    transition-duration: 0.1s;
+}
+
+.QBlock .OpBtn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.QBlock .delOpBtn {
+    position: absolute;
+    right: 40px;
+}
+
+.QBtn {
+    display: flex;
+    justify-content: center;
+    line-height: 30px;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    transition-duration: 0.1s;
+}
+
+.QBtn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.delQBtn {
+    bottom: 5px;
+    border: 1px solid rgb(206, 207, 209);
+    position: absolute;
+    right: 30px;
+}
+
+.addQBtn {
+    margin-right: 600px;
+}
+
+.createBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 82px;
+    height: 36px;
+    border-radius: 48px;
+    background-color: rgb(103, 58, 183);
+    color: white;
+    border-radius: 4px;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.createBtn:hover{
+    background-color: rgb(153, 108, 233);
+}

@@ -1,0 +1,18 @@
+.fltBtn {
+    position: fixed;
+    bottom: 60px;
+    border-radius:50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: purple;
+    transition: 0.2s all linear;
+}
+
+.fltBtn:hover {
+    background-color: gold;
+    transform: translate(0, -20px);
+}

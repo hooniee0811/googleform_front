@@ -1,15 +1,18 @@
 import { ChangeEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import styles from '../styles/Form.module.css';
+import styles from '../../styles/Form.module.css';
 import axios from "axios";
 // import { QuestionInterface } from '../../src/interface/question'
 
 // import { firestore } from './firebase';
 
 export default function Create() {
-    const [title, setTitle] = useState("No title")
-    const [desc, setDesc] = useState("Form description")
-    const [question, setQuestion] = useState([
+    const [form, setForm] = useState({
+        uuid: uuidv4(),
+        title: "No title",
+        desc: "Form description"
+    })
+    const [questions, setQuestions] = useState([
         {
             uuid: uuidv4(),
             qType: "checkbox",
@@ -26,22 +29,39 @@ export default function Create() {
     ])
 
     const updateTitle = (evt) => {
-        setTitle(evt.target.value)
+        const cp = {...form}
+        cp.title = evt.target.value
+        setForm(cp)
     }
 
     const updateDesc = (evt) => {
-        setDesc(evt.target.value)
+        const cp = {...form}
+        cp.desc = evt.target.value
+        setForm(cp)
     }
 
     const updateQtype = (evt, uuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const cp = [...questions]
         cp[index].qType = evt.target.value
-        setQuestion(cp)
+
+        if(cp[index].qType === "text") {
+            cp[index].options = null
+        } else {
+            cp[index].options = [
+                {
+                    uuid: uuidv4(),
+                    title: "Option",
+                    desc: "Option description",
+                }
+            ]
+        }
+
+        setQuestions(cp)
     }
 
     const addQuestion = () => {
-        const cp = [...question]
+        const cp = [...questions]
         cp.push({
             uuid: uuidv4(),
             qType: "checkbox",
@@ -55,73 +75,93 @@ export default function Create() {
                 }
             ]
         })
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const delQuestion = (uuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const cp = [...questions]
         cp.splice(index, 1)
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const updateQtitle = (evt, uuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const cp = [...questions]
         cp[index].title = evt.target.value
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const updateQdesc = (evt, uuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const cp = [...questions]
         cp[index].desc = evt.target.value
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const updateOptitle = (evt, uuid, opUuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const opIndex = question[index].options.findIndex(option => option.uuid === opUuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const opIndex = questions[index].options.findIndex(option => option.uuid === opUuid)
+        const cp = [...questions]
         cp[index].options[opIndex].title = evt.target.value
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const updateOpdesc = (evt, uuid, opUuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const opIndex = question[index].options.findIndex(option => option.uuid === opUuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const opIndex = questions[index].options.findIndex(option => option.uuid === opUuid)
+        const cp = [...questions]
         cp[index].options[opIndex].desc = evt.target.value
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const addOption = (uuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const cp = [...questions]
         cp[index].options.push({
             uuid: uuidv4(),
             title: "Option",
             desc: "Option description"
         })
-        setQuestion(cp)
+        setQuestions(cp)
     }
 
     const delOption = (uuid, opUuid) => {
-        const index = question.findIndex(question => question.uuid === uuid)
-        const opIndex = question[index].options.findIndex(option => option.uuid === opUuid)
-        const cp = [...question]
+        const index = questions.findIndex(question => question.uuid === uuid)
+        const opIndex = questions[index].options.findIndex(option => option.uuid === opUuid)
+        const cp = [...questions]
         cp[index].options.splice(opIndex, 1)
-        setQuestion(cp)
+        setQuestions(cp)
+    }
+
+    const uploadForm = () => {
+        axios.post(`http://localhost:3000/forms/uploadform`, {
+            form: form,
+            questions: questions
+        })
+            .then(function (response) {
+                // handle success
+                // console.log(response);
+                // console.log(response.data)
+                alert(response.data.message)
+            })
+            .catch(function (error) {
+                // handle error
+                alert(error)
+            })
+            .then(function () {
+                // always executed
+            });
     }
 
 
     return (
         <div className={styles.frame}>
             <div className={styles.titleBlock}>
-                <input className={styles.title} value={title} onChange={(evt) => updateTitle(evt)} />
-                <input className={styles.desc} value={desc} onChange={(evt) => updateDesc(evt)} />
+                <input className={styles.title} value={form.title} onChange={(evt) => updateTitle(evt)} />
+                <input className={styles.desc} value={form.desc} onChange={(evt) => updateDesc(evt)} />
             </div>
-            {question.map((question) => {
+            {questions.map((question) => {
                 return (
                     <div key={question.uuid}>
                         <Question
@@ -139,7 +179,7 @@ export default function Create() {
             })}
             <div className={`${styles.QBtn} ${styles.addQBtn}`} onClick={(evt) => addQuestion()}>+</div>
             <br />
-            <div className={styles.createBtn}>Create</div>
+            <div className={styles.createBtn} onClick={(evt) => uploadForm()}>Create</div>
             <div style={{ height: "100vh" }}></div>
         </div>
     )

@@ -220,7 +220,7 @@ const Question = ({ question, updateQtype, updateQtitle, updateQdesc, updateOpti
         return (
             <div className={styles.QBlock}>
                 <div className={styles.firstRow}>
-                    <input className={styles.inputQTitle} value={question.title} onChange={(evt) => updateQtitle(evt, index)} />
+                    <input className={styles.inputQTitle} value={question.title} onChange={(evt) => updateQtitle(evt, question.uuid, option.uuid)} />
                     <div style={{ flexGrow: 1 }}></div>
                     <select className={styles.selector} value={question.qType} onChange={(evt) => updateQtype(evt, question.uuid)}>
                         <option value="checkbox">checkbox</option>

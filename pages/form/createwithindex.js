@@ -90,7 +90,7 @@ export default function Create() {
         <div className={styles.frame}>
             {question.map((question, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                         <Question
                             question={question}
                             index={index}
@@ -125,7 +125,7 @@ const Question = ({ question, index, updateQtitle, updateQdesc, updateOptitle, u
                 <input className={styles.inputQdesc} placeholder="[question]description" value={question.desc} onChange={(evt) => updateQdesc(evt, index)} />
                 {question.options.map((option, opindex) => {
                     return (
-                        <div style={{ paddingLeft: 30 }}>
+                        <div style={{ paddingLeft: 30 }} key={opindex}>
                             <input placeholder="[option]title" value={option.title} onChange={(evt) => updateOptitle(evt, index, opindex)} />
                             {option.title}
                             <br />

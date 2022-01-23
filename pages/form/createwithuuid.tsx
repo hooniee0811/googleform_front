@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import styles from '../../styles/Form.module.css'
 import { QuestionInterface } from '../../src/interface/question'
 
-// import { firestore } from './firebase';
-
 export default function Create() {
     const [title, setTitle] = useState<string>("No title")
     const [desc, setDesc] = useState<string>("Form description")

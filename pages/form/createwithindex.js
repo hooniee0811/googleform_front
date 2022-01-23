@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from '../../styles/Form.module.css'
 
 
-import { firestore } from './firebase';
 
 export default function Create() {
     const [question, setQuestion] = useState([

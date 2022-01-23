@@ -179,7 +179,7 @@ const Question = ({ question, updateQtype, updateQtitle, updateQdesc, updateOpti
         return (
             <div className={styles.QBlock}>
                 <div className={styles.firstRow}>
-                    <input className={styles.inputQTitle} value={question.title} onChange={(evt) => updateQtitle(evt, index)} />
+                    <input className={styles.inputQTitle} value={question.title} onChange={(evt) => updateQtitle(evt, question.uuid)} />
                     <div style={{ flexGrow: 1 }}></div>
                     <select className={styles.selector} value={question.qType} onChange={(evt) => updateQtype(evt, question.uuid)}>
                         <option value="checkbox">checkbox</option>
@@ -187,7 +187,7 @@ const Question = ({ question, updateQtype, updateQtitle, updateQdesc, updateOpti
                         <option value="text">text</option>
                     </select>
                 </div>
-                <input className={styles.inputQDesc} value={question.desc} onChange={(evt) => updateQdesc(evt, index)} />
+                <input className={styles.inputQDesc} value={question.desc} onChange={(evt) => updateQdesc(evt, question.uuid)} />
                 <div className={`${styles.QBtn} ${styles.delQBtn}`} onClick={(evt) => delQuestion(question.uuid)}>-</div>
             </div>
         )

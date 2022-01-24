@@ -76,8 +76,8 @@ const Question = ({ question, answerTexts, optionCnt }) => {
                 <div className={styles.inputQDesc}>{question.desc}</div>
                 {answerTexts[answerTexts.findIndex(answer => answer[0].formQuestionId === question.id)].map((answer) => {
                     return (
-                        <div>
-                            <div key={answer.id}>{answer.answerText}</div>
+                        <div key={answer.id}>
+                            <div>{answer.answerText}</div>
                             <br />
                         </div>
                     )

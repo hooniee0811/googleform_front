@@ -135,7 +135,7 @@ export default function Create() {
     }
 
     const uploadForm = () => {
-        axios.post(`http://localhost:3000/forms/uploadform`, {
+        axios.post(`https://api.myformvalley.com/forms/uploadform`, {
             form: form,
             questions: questions
         })

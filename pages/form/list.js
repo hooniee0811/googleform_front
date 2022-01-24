@@ -23,7 +23,7 @@ export default function List({ forms }) {
 }
 
 export async function getServerSideProps() {
-	const res = await axios.get('http://localhost:3000/forms/')
+	const res = await axios.get('https://api.myformvalley.com/forms/')
 	const forms = res.data.forms
 
 	return {

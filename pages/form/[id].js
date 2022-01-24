@@ -64,7 +64,7 @@ const Question = ({ question }) => {
 export async function getServerSideProps(context) {
     const { id } = context.query
     console.log(id)
-	const res = await axios.get(`http://localhost:3000/forms/${id}`)
+	const res = await axios.get(`https://api.myformvalley.com/forms/${id}`)
 
 	const form = res.data.form
 	const formQuestions = res.data.formQuestions

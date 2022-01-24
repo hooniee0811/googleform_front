@@ -67,7 +67,7 @@ export default function Post({ form, questions }) {
     }
 
     const submitAnswer = () => {
-        axios.post("http://localhost:3000/answers/submitanswer", {
+        axios.post("https://api.myformvalley.com/answers/submitanswer", {
             form: form,
             answerTexts: answerTexts,
             answerOptions: answerOptions
@@ -152,7 +152,7 @@ const Question = ({ question, isOptionSelected, selectOption, updateAnswerText }
 
 export async function getServerSideProps(context) {
     const { id } = context.query
-    const res = await axios.get(`http://localhost:3000/forms/${id}`)
+    const res = await axios.get(`https://api.myformvalley.com/forms/${id}`)
 
     const form = res.data.form
     const formQuestions = res.data.formQuestions

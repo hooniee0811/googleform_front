@@ -7,11 +7,14 @@ import axios from "axios";
 // import { firestore } from './firebase';
 
 export default function Create() {
+    //title & description of the Form
     const [form, setForm] = useState({
         uuid: uuidv4(),
         title: "No title",
         desc: "Form description"
     })
+
+    //list of questions
     const [questions, setQuestions] = useState([
         {
             uuid: uuidv4(),
@@ -29,6 +32,7 @@ export default function Create() {
     ])
 
     const updateTitle = (evt) => {
+        //...: spread operator
         const cp = {...form}
         cp.title = evt.target.value
         setForm(cp)
@@ -135,10 +139,14 @@ export default function Create() {
     }
 
     const uploadForm = () => {
-        axios.post(`https://api.myformvalley.com/forms/uploadform`, {
+        axios.post(`https://googleform-front.vercel.app/forms/uploadform`, {
             form: form,
             questions: questions
         })
+        // axios.post(`http://api.myformvalley.com/forms/uploadform`, {
+        //     form: form,
+        //     questions: questions
+        // })
             .then(function (response) {
                 // handle success
                 // console.log(response);
